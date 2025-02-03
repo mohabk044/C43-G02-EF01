@@ -1,4 +1,5 @@
-﻿using static Demo.ListGenerator;
+﻿using System.Text.RegularExpressions;
+using static Demo.ListGenerator;
 namespace Demo
 {
     internal class Program
@@ -75,31 +76,45 @@ namespace Demo
             #endregion
 
             #region Video 04 - Partitioning Operators
-            //Take:
-            var result = ProductList.Where(p => p.UnitsInStock > 0).Take(3);
-            Console.WriteLine(result);
-            //TakeLast:
-            var result1 = ProductList.Where(p => p.UnitsInStock > 0).TakeLast(3);
-            Console.WriteLine(result1);
-            //Skip:
-            var result2 = ProductList.Where(p => p.UnitsInStock > 0).Skip(3);
-            Console.WriteLine(result2);
-            //SkipLast:
-            var result3 = ProductList.Where(p => p.UnitsInStock > 0).SkipLast(3);
-            foreach (var item in result3)
-            {
-                Console.WriteLine(item);
-            }
-            int[] Num = { 5, 4, 1, 3, 9, 8 };
-            //TakeWhile:
-            var result4 = Num.TakeWhile((Num, Index) => Num > Index);
-            foreach (var item in result4)
-            {
-                Console.WriteLine(item);
-            }
-            //SkipWhile:
-            var result5 = Num.SkipWhile((Num, Index) => Num > Index);
-            foreach (var item in result5)
+            ////Take:
+            //var result = ProductList.Where(p => p.UnitsInStock > 0).Take(3);
+            //Console.WriteLine(result);
+            ////TakeLast:
+            //var result1 = ProductList.Where(p => p.UnitsInStock > 0).TakeLast(3);
+            //Console.WriteLine(result1);
+            ////Skip:
+            //var result2 = ProductList.Where(p => p.UnitsInStock > 0).Skip(3);
+            //Console.WriteLine(result2);
+            ////SkipLast:
+            //var result3 = ProductList.Where(p => p.UnitsInStock > 0).SkipLast(3);
+            //foreach (var item in result3)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //int[] Num = { 5, 4, 1, 3, 9, 8 };
+            ////TakeWhile:
+            //var result4 = Num.TakeWhile((Num, Index) => Num > Index);
+            //foreach (var item in result4)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            ////SkipWhile:
+            //var result5 = Num.SkipWhile((Num, Index) => Num > Index);
+            //foreach (var item in result5)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            #endregion
+
+            #region Video 05 - Let&Into
+            var Names = new List<string>() { "Omar", "Ahmed", "Rana", "Mai", "Mohammed" };
+            var result = from n in Names
+                         select Regex.Replace(n, "[aeiouAEIOU]", string.Empty)
+                         into noVowels
+                         where noVowels.Length > 3
+                         select noVowels;
+            result = Names.Select(n => Regex.Replace(n, "[aeiouAEIOU]", string.Empty)).Where(n => n.Length > 3);
+            foreach (var item in result)
             {
                 Console.WriteLine(item);
             }
