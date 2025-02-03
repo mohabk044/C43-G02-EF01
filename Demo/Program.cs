@@ -33,12 +33,22 @@ namespace Assignment
             #endregion
 
             #region Q4- Get the elements of the array starting from the first element divisible by 3.
+            //int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            //var Result = numbers.Where(n => n % 3 == 0).Take(4);
+            //foreach (var item in Result)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            #endregion
+
+            #region Q5- Get the elements of the array starting from the first element less than its position.
             int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
-            var Result = numbers.Where(n => n % 3 == 0).Take(4);
+            var Result = numbers.Where((n, i) => n < i).Take(6);
             foreach (var item in Result)
             {
                 Console.WriteLine(item);
             }
+
             #endregion
             #endregion
         }
