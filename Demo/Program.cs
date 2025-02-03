@@ -1,4 +1,5 @@
-﻿using static Assignment.ListGenerators;
+﻿using System.Collections.Generic;
+using static Assignment.ListGenerators;
 namespace Assignment
 {
     internal class Program
@@ -71,13 +72,29 @@ namespace Assignment
             #endregion
 
             #region Q3. Return a grouped a list of products only for categories that have all of their products in stock.
-            var result = ProductList.Where(p => p.UnitsInStock > 0).GroupBy(p => p.Category);
+            //var result = ProductList.Where(p => p.UnitsInStock > 0).GroupBy(p => p.Category);
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine($"*{item.Key}*");
+            //    foreach (var item1 in item)
+            //    {
+            //        Console.WriteLine($"==>{item1}");
+            //    }
+            //    Console.WriteLine();
+            //}
+            #endregion
+            #endregion
+
+            #region LINQ – Grouping Operators
+            #region Q1- Use group by to partition a list of numbers by their remainder when divided by 5
+            List<int> numbers = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+            var result = numbers.GroupBy(n => n % 5);
             foreach (var item in result)
             {
-                Console.WriteLine($"*{item.Key}*");
+                Console.WriteLine($"Remainder By {item.Key}");
                 foreach (var item1 in item)
                 {
-                    Console.WriteLine($"==>{item1}");
+                    Console.WriteLine(item1);
                 }
                 Console.WriteLine();
             }
