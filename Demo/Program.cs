@@ -2,6 +2,8 @@
 using static System.Net.Mime.MediaTypeNames;
 using System.Runtime.Intrinsics.X86;
 using static Assignment.ListGenerators;
+using System.Collections;
+using System.Text.RegularExpressions;
 namespace Assignment
 {
     internal class Program
@@ -103,14 +105,28 @@ namespace Assignment
             #endregion
 
             #region Q2- Uses group by to partition a list of words by their first letter.Use dictionary_english.txt for Input
-            List<string> words = File.ReadAllLines("dictionary_english.txt").ToList();
-            var Results = words.GroupBy(W => W[0]);
-            foreach (var item in Results)
+            //List<string> words = File.ReadAllLines("dictionary_english.txt").ToList();
+            //var Results = words.GroupBy(W => W[0]);
+            //foreach(var item in Results)
+            //{
+            //    Console.WriteLine($"Words starting with '{item.Key}':");
+            //    foreach (var word in item)
+            //    {
+            //        Console.WriteLine(word);
+            //    }
+            //    Console.WriteLine();
+            //}
+            #endregion
+
+            #region Q3. Consider this Array as an Input Use Group By with a custom comparer that matches words that are consists of the same Characters Together
+            string[] Arr = { "from", "salt", "earn", " last", "near", "form" };
+            var Result = Arr.GroupBy(word => string.Concat(word.OrderBy(C => C)));
+
+            foreach (var item in Result)
             {
-                Console.WriteLine($"Words starting with '{item.Key}':");
-                foreach (var word in item)
+                foreach (var item1 in item)
                 {
-                    Console.WriteLine(word);
+                    Console.WriteLine(item1);
                 }
                 Console.WriteLine();
             }
