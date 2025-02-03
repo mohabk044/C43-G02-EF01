@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using static System.Net.Mime.MediaTypeNames;
+using System.Runtime.Intrinsics.X86;
 using static Assignment.ListGenerators;
 namespace Assignment
 {
@@ -87,14 +89,28 @@ namespace Assignment
 
             #region LINQ – Grouping Operators
             #region Q1- Use group by to partition a list of numbers by their remainder when divided by 5
-            List<int> numbers = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
-            var result = numbers.GroupBy(n => n % 5);
-            foreach (var item in result)
+            //List<int> numbers = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+            //var result = numbers.GroupBy(n => n % 5);
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine($"Remainder By {item.Key}");
+            //    foreach (var item1 in item)
+            //    {
+            //        Console.WriteLine(item1);
+            //    }
+            //    Console.WriteLine();
+            //}
+            #endregion
+
+            #region Q2- Uses group by to partition a list of words by their first letter.Use dictionary_english.txt for Input
+            List<string> words = File.ReadAllLines("dictionary_english.txt").ToList();
+            var Results = words.GroupBy(W => W[0]);
+            foreach (var item in Results)
             {
-                Console.WriteLine($"Remainder By {item.Key}");
-                foreach (var item1 in item)
+                Console.WriteLine($"Words starting with '{item.Key}':");
+                foreach (var word in item)
                 {
-                    Console.WriteLine(item1);
+                    Console.WriteLine(word);
                 }
                 Console.WriteLine();
             }
