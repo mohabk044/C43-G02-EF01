@@ -42,13 +42,19 @@ namespace Assignment
             #endregion
 
             #region Q5- Get the elements of the array starting from the first element less than its position.
-            int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
-            var Result = numbers.Where((n, i) => n < i).Take(6);
-            foreach (var item in Result)
-            {
-                Console.WriteLine(item);
-            }
+            //int[] numbers = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            //var Result = numbers.Where((n, i) => n < i).Take(6);
+            //foreach (var item in Result)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            #endregion
+            #endregion
 
+            #region LINQ - Quantifiers
+            #region Q1. Determine if any of the words in dictionary_english.txt (Read dictionary_english.txt into Array of String First) contain the substring 'ei'.
+            var Words = File.ReadAllLines("dictionary_english.txt").Contains("ei");
+            Console.WriteLine(Words);
             #endregion
             #endregion
         }
