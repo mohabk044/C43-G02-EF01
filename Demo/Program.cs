@@ -25,12 +25,50 @@ namespace Demo
             #endregion
 
             #region Video 02 - Transformationo Operators[Zipping]
-            List<string> Words = new List<string>() { "ten", "twenty", "Thirty", "Fourty" };
-            int[] Num = { 10, 20, 30, 40, 50, 60 };
-            var result01 = Num.Zip(Words); //First Overload
-            var result02 = Num.Zip(Words, (Num, Words) => $"{Num}= {Words}"); //Third Overload
-            var result03 = Num.Zip(Words, [1, 2, 3]); //Second Overload
-            foreach (var item in result03)
+            //List<string> Words = new List<string>() { "ten", "twenty", "Thirty", "Fourty" };
+            //int[] Num = { 10, 20, 30, 40, 50, 60 };
+            //var result01 = Num.Zip(Words); //First Overload
+            //var result02 = Num.Zip(Words, (Num, Words) => $"{Num}= {Words}"); //Third Overload
+            //var result03 = Num.Zip(Words, [1, 2, 3]); //Second Overload
+            //foreach (var item in result03)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            #endregion
+
+            #region Video 03 - Grouping Operatotrs
+            //Ex01:
+            var result = ProductList.GroupBy(p => p.Category);
+            result = from p in ProductList
+                     group p by p.Category;
+            result = ProductList.GroupBy(p => p.Category);
+            foreach (var item in result)
+            {
+                Console.WriteLine($"{item.Key}:");
+                foreach (var item1 in item)
+                {
+                    Console.WriteLine($"::: {item1}");
+                }
+            }
+            //Ex02:
+            var result02 = ProductList.Where(p => p.UnitsInStock > 0)
+            .GroupBy(p => p.Category)
+            .Where(ProductGroup => ProductGroup.Count() > 10).Select(ProductGroup => new
+            {
+                category = ProductGroup.Key,
+                count = ProductGroup.Count()
+            });
+            result02 = from p in ProductList
+                       where p.UnitsInStock > 0
+                       group p by p.Category
+                       into ProductGroup
+                       where ProductGroup.Count() > 10
+                       select new
+                       {
+                           category = ProductGroup.Key,
+                           count = ProductGroup.Count()
+                       };
+            foreach (var item in result)
             {
                 Console.WriteLine(item);
             }
